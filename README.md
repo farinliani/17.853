@@ -1,1 +1,2 @@
-# 17.853
+# 17.853: Machine Learning and Data Science in Politics (Fall 2023) 
+Project code
