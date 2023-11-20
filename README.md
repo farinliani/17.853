@@ -1,2 +1,2 @@
-### Machine Learning and Data Science in Politics (Fall 2023) 
+### Machine Learning and Data Science in Politics (F23) 
 Project code
