@@ -1,5 +1,6 @@
 library(sf)
 library(ggplot2)
+#setwd() #change to dir with indexed votes file
 indexed_data <- read.csv("indexed_votes.csv")
 
 just_refs <- indexed_data[, -1]
@@ -24,7 +25,7 @@ averages_df <- na.omit(averages_df)
 barplot(averages_df$Average,
         names.arg = averages_df$Variable,
         col = "#FDFD96",
-        ylab = "Representation Score",
+        ylab = "Average Alignment",
         cex.names = 0.8,
         las = 2,
         ylim = c(0, 1))
