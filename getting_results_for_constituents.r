@@ -28,7 +28,9 @@ dictionary_of_dfs <- list()
 # Iterate through each CSV file and apply the function
 for (file in csv_files) {
   file_name <- as.character(tools::file_path_sans_ext(basename(file)))
-  ref_num <- paste0("R", substr(file_name, nchar(file_name) - 6, nchar(file_name)))
+  ref_num <- paste0("R", substr(file_name,
+                                nchar(file_name) - 6,
+                                nchar(file_name)))
   result <- get_results(file)
   dictionary_of_dfs[[ref_num]] = result
 }
