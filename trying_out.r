@@ -131,3 +131,43 @@ df <-
 df
 result <- matching_year(indexed_data, df, 3)
 print((result[["att"]]))
+
+file_path <- file.path(left, paste0(2016, right))
+df <- read.csv(toString(file_path))
+df <- add_income_col(df, "Median.Income.ACS", 3)
+# corect ref and combined df
+ref_comb <- get_correct_ref(df, indexed_data)
+ref_name <- ref_comb[["ref_name"]]
+merged_df <- ref_comb[["merged_df"]]
+
+# full matching
+mout <- matchit(income ~ Population + `Median.Age` + White + Black + Asian,
+                data = merged_df,
+                method = "nearest",
+                distance = "mahalanobis",
+                replace = TRUE)
+mdata <- match.data(mout)
+
+s <- summary(mout)
+
+normal <- lm(R67_2016 ~ income + Population + `Median.Age` + White + Black + Asian, data = mdata)
+
+s <- summary(normal)
+coef <- s$coefficients
+coef[, "Std. Error"]
+
+fit <- lm_for_ref("income + Population + `Median.Age` + White + Black + Asian",
+                  ref_name,
+                  mdata)
+
+s <- summary(fit)
+coef <- s$coefficients
+coef[, "Std. Error"][2]
+
+avg_fit <- avg_comparisons(fit,
+            variables = "income",
+            type = 'response',
+            wts = "weights")
+avg_fit$estimate
+avg_fit$p.value
+summary(fit)

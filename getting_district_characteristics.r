@@ -139,7 +139,9 @@ make_df <- function(db) {
 
     district_number <- as.numeric(substr(numbers, 1, (nchar(numbers) - 4)))
     year <- as.numeric(substr(numbers, (nchar(numbers) - 3), nchar(numbers)))
-
+    if (year == 2018){
+      year <- 2020 # use 2018 data for 2020
+    }
     # add name and year to the array
     district_year <- c(district_number, year)
 
