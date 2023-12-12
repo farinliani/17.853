@@ -64,12 +64,4 @@ print(results[["punished_df"]])
 
 const_data <- read.csv("final_votes/wa_constituent_votes.csv")
 ref_average <- results[["average_per_district"]]
-
-just_averages <- data.frame("District" = const_data[, "Districts"])
-averages <- c()
-for (i in 1:49){
-  average <- (ref_average$Average_Ref[2*i] + ref_average$Average_Ref[2*i-1])/2
-  averages <- c(averages, average)
-}
-just_averages$Average <- averages
-write.csv(just_averages, "indexed_average_votes_wa.csv", row.names = FALSE)
+write.csv(ref_average, "indexed_average_votes_wa.csv", row.names = FALSE)
